@@ -37,3 +37,8 @@ def create_from_text(payload: TextRequest):
         equipment=proposal.get("equipment")
     )
     return repo.add(item)
+
+@app.post("/debug/toggle-outage")
+def toggle_outage():
+    ai_client.is_down = not ai_client.is_down
+    return {"is_down": ai_client.is_down}
